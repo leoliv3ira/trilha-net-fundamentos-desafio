@@ -1,0 +1,84 @@
+CÓDIGO EM C#
+
+
+using System;
+using System.Collections.Generic;
+
+namespace Estacionamento
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Define o preço por hora do estacionamento
+            double precoPorHora = 5;
+
+            // Cria uma lista para armazenar os veículos cadastrados
+            List<string> veiculos = new List<string>();
+
+            int opcao;
+
+            // Loop principal do programa
+            do
+            {
+                // Exibe o menu de opções para o usuário
+                Console.WriteLine("Bem-vindo ao app de estacionamento!");
+                Console.WriteLine("1. Cadastrar veículo");
+                Console.WriteLine("2. Remover veículo");
+                Console.WriteLine("3. Ver veículos");
+                Console.WriteLine("4. Ver preço final");
+                Console.WriteLine("5. Encerrar");
+
+                // Lê a opção escolhida pelo usuário
+                Console.Write("Escolha o serviço: ");
+                opcao = int.Parse(Console.ReadLine());
+
+                // Processa a opção escolhida pelo usuário
+                switch (opcao)
+                {
+                    case 1:
+                        // Cadastra um novo veículo
+                        Console.Write("Cadastre seu veículo: ");
+                        string novoVeiculo = Console.ReadLine();
+                        veiculos.Add(novoVeiculo);
+                        break;
+                    case 2:
+                        // Remove um veículo
+                        Console.WriteLine("Veículos cadastrados:");
+                        foreach (string veiculo in veiculos)
+                        {
+                            Console.WriteLine(veiculo);
+                        }
+                        Console.Write("Digite a placa do veículo a ser removido: ");
+                        string veiculoRemover = Console.ReadLine();
+                        if (veiculos.Remove(veiculoRemover))
+                        {
+                            Console.WriteLine("Veículo removido com sucesso!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Veículo não encontrado.");
+                        }
+                        break;
+                    case 3:
+                        // Mostra a lista de veículos cadastrados
+                        Console.WriteLine("Veículos cadastrados:");
+                        foreach (string veiculo in veiculos)
+                        {
+                            Console.WriteLine(veiculo);
+                        }
+                        break;
+                    case 4:
+                        // Calcula o preço total do estacionamento
+                        Console.Write("Qual a placa do veículo: ");
+                        string placa = Console.ReadLine();
+                        Console.Write("Quantas horas: ");
+                        int horas = int.Parse(Console.ReadLine());
+                        double total = precoPorHora * horas;
+                        Console.WriteLine($"O total do serviço é de: R${total:F2}");
+                        break;
+                }
+            } while (opcao != 5);
+        }
+    }
+}

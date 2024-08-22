@@ -1,0 +1,50 @@
+# Bem-vindo ao app de estacionamento!
+print(f"Bem-Vindo ao app de estacionamento")
+
+# Define o preço por hora do estacionamento
+precoHora = 5
+
+# Cria uma lista vazia para armazenar os veículos cadastrados
+veiculos = []
+
+# Variável para controlar o menu principal
+x = 0
+
+# Loop principal do programa
+while x != 5:
+    # Exibe as opções disponíveis para o usuário
+    print(f"Cadastrar veículo = 1 \n Remover veículo = 2 \n ver veículos = 3 \n ver preço final = 4 \n encerrar = 5")
+
+    # Solicita ao usuário que escolha uma opção
+    x = int(input("Escolha o serviço: "))
+
+    # Cadastra um novo veículo
+    if x == 1:
+        cadastreSeuVeiculo = input("Cadastre seu veículo: ")
+        veiculos.append(cadastreSeuVeiculo)
+
+    # Remove um veículo
+    elif x == 2:
+        for veiculo in veiculos:
+            print(f"{veiculo}")
+        removaVeiculo = input("remova seu veiculo")
+        if removaVeiculo in veiculos:
+            veiculos.remove(removaVeiculo)
+        else:
+            print("Veículo não encontrado")
+
+    # Mostra a lista de veículos cadastrados
+    elif x == 3:
+        for veiculo in veiculos:
+            print(f"{veiculo}")
+
+    # Calcula o preço total do estacionamento
+    elif x == 4:
+        placa = input("Qual a placa do veiculo: ")
+        horas = int(input("Quantas horas:  "))
+        total = precoHora * horas
+        print(f"o total do serviço é de : R${total:.2f}")
+
+    # Encerra o programa
+    else:
+        break

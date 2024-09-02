@@ -1,0 +1,53 @@
+class Pessoa:
+    def __init__(self, nome):
+        self.nome = nome
+
+
+class Suite:
+    def __init__(self, numero, capacidade, valor_diaria):
+        self.numero = numero
+        self.capacidade = capacidade
+        self.valor_diaria = valor_diaria
+
+
+class Reserva:
+    def __init__(self, suite, dias_reserva):
+        self.suite = suite
+        self.dias_reserva = dias_reserva
+        self.hospedes = []
+
+    def adicionar_hospede(self, hospede):
+        if len(self.hospedes) < self.suite.capacidade:
+            self.hospedes.append(hospede)
+        else:
+            raise Exception("Capacidade da suíte excedida!")
+
+    def obter_quantidade_hospedes(self):
+        return len(self.hospedes)
+
+    def calcular_valor_diaria(self):
+        valor_total = self.dias_reserva * self.suite.valor_diaria
+        if self.dias_reserva >= 10:
+            valor_total *= 0.9  # Aplica desconto de 10%
+        return valor_total
+
+
+# Exemplo de uso
+try:
+    # Criação de objetos
+    suite_luxo = Suite(numero=101, capacidade=2, valor_diaria=200.0)
+    reserva = Reserva(suite=suite_luxo, dias_reserva=12)
+
+    # Adicionar hóspedes
+    reserva.adicionar_hospede(Pessoa("João"))
+    reserva.adicionar_hospede(Pessoa("Maria"))
+    # reserva.adicionar_hospede(Pessoa("Pedro"))  # Esta linha causaria uma exceção, pois excede a capacidade
+
+    # Obter a quantidade de hóspedes
+    print("Quantidade de hóspedes:", reserva.obter_quantidade_hospedes())
+
+    # Calcular o valor da diária
+    print("Valor total da diária:", reserva.calcular_valor_diaria())
+
+except Exception as e:
+    print("Erro na reserva:", e)
